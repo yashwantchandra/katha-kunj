@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>कथा कुंज — हिंदी कहानियों का संग्रह</title>
+  <meta name="description" content="कथा कुंज — मौलिक हिंदी कहानियाँ, उपन्यास और लघुकथाएँ। एक सुन्दर, शान्त पठन अनुभव।" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #faf5ec;
+      --bg-deep: #f2e9d6;
+      --ink: #2b1d14;
+      --ink-soft: #5b4636;
+      --accent: #b3541e;
+      --accent-deep: #8a3a0b;
+      --gold: #c9a05a;
+      --line: #d9c7a6;
+      --card: #fffaf0;
+      --shadow: 0 20px 60px -20px rgba(80, 40, 10, 0.25);
+    }
+
+    [data-theme="dark"] {
+      --bg: #14100c;
+      --bg-deep: #1d1712;
+      --ink: #f5ecda;
+      --ink-soft: #c9b593;
+      --accent: #e89158;
+      --accent-deep: #f3a974;
+      --gold: #d9b878;
+      --line: #3a2d1e;
+      --card: #1f1812;
+      --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Serif Devanagari', 'Noto Sans Devanagari', serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* Decorative background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(201, 160, 90, 0.12), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(179, 84, 30, 0.08), transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo .leaf {
+      display: inline-block;
+      width: 28px; height: 28px;
+      background: radial-gradient(circle at 30% 30%, var(--gold), var(--accent) 70%);
+      border-radius: 50% 8% 50% 8%;
+      transform: rotate(-20deg);
+    }
+
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero .ornament {
+      font-size: 2rem;
+      color: var(--gold);
+      letter-spacing: 1rem;
+      margin-bottom: 24px;
+      opacity: 0.7;
+    }
+
+    .hero h1 {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--ink);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 .highlight {
+      color: var(--accent);
+      font-style: italic;
+      position: relative;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--ink-soft);
+      max-width: 620px;
+      margin: 0 auto 40px;
+      font-style: italic;
+    }
+
+    .hero .cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero .cta:hover {
+      transform: translateY(-2px);
+      background: var(--accent-deep);
+    }
+
+    /* ---------- SECTION HEADING ---------- */
+    .section-heading {
+      text-align: center;
+      margin: 80px 0 50px;
+    }
+    .section-heading h2 {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--ink);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .section-heading .divider {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    .section-heading .divider::before,
+    .section-heading .divider::after {
+      content: '';
+      width: 60px; height: 1px;
+      background: var(--line);
+    }
+
+    /* ---------- STORY GRID ---------- */
+    .stories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      padding-bottom: 80px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .card .cover {
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card .cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.25));
+    }
+    .card .cover h3 {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      z-index: 2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      line-height: 1.2;
+    }
+
+    .cover-1 { background: linear-gradient(135deg, #8a3a0b, #c9a05a); }
+    .cover-2 { background: linear-gradient(135deg, #3e2a66, #b3541e); }
+    .cover-3 { background: linear-gradient(135deg, #1e3a5f, #6b8c42); }
+    .cover-4 { background: linear-gradient(135deg, #2d1b0e, #a66534); }
+    .cover-5 { background: linear-gradient(135deg, #5c2a4a, #d9a55a); }
+
+    .card .body {
+      padding: 22px 24px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card .meta {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .card h4 {
+      font-family: 'Noto Serif Devanagari', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .card p {
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      flex: 1;
+    }
+    .card .read-more {
+      margin-top: 16px;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* ---------- READER ---------- */
+    .reader-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 200;
+      overflow-y: auto;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .reader-overlay.open { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reader {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 120px;
+    }
+
+    .reader .back {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+      transition: all 0.2s;
+    }
+    .reader .back:hover { color: var(--accent); border-color: var(--accent); }
+
+    .reader .story-meta {
+      text-align: center;
+      color: var(--ink-soft);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .reader h1 {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--ink);
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .reader .subtitle {
+      text-align: center;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    .reader .ornament {
+      text-align: center;
+      color: var(--gold);
+      margin: 40px 0;
+      letter-spacing: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .reader .content {
+      font-size: 1.15rem;
+      line-height: 2;
+      color: var(--ink);
+    }
+    .reader .content p {
+      margin-bottom: 1.4em;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .reader .content p:first-of-type::first-letter {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 3.6rem;
+      float: left;
+      line-height: 0.9;
+      padding: 6px 10px 0 0;
+      color: var(--accent);
+    }
+    .reader .content em {
+      color: var(--accent-deep);
+      font-style: italic;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+    }
+    .about p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+    .about .author-name {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      color: var(--accent);
+      margin-bottom: 24px;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--line);
+    }
+    footer .heart { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links a:not(.theme-toggle) { display: none; }
+      .reader { padding: 40px 20px 80px; }
+      .reader .content { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; padding: 0 24px;">
+      <a href="#top" class="logo"><span class="leaf"></span> कथा कुंज</a>
+      <div class="nav-links">
+        <a href="#stories">कहानियाँ</a>
+        <a href="#about">परिचय</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 रात</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="ornament">❖ ❖ ❖</div>
+      <h1>शब्दों का <span class="highlight">कुंज</span>,<br />कहानियों का घर</h1>
+      <p class="tagline">यहाँ हर पन्ना एक यात्रा है — गलियों की, यादों की, और उन अनकहे किरदारों की जो कहीं हमारे भीतर बसते हैं।</p>
+      <a href="#stories" class="cta">पढ़ना आरम्भ करें →</a>
+    </section>
+
+    <!-- STORIES -->
+    <section id="stories">
+      <div class="section-heading">
+        <h2>कहानी संग्रह</h2>
+        <div class="divider">✦</div>
+      </div>
+
+      <div class="stories" id="storyGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="section-heading">
+        <h2>कथा कुंज के बारे में</h2>
+        <div class="divider">✦</div>
+      </div>
+      <div class="author-name">— यशवंत सिंह चंद्रा</div>
+      <p>
+        "कथा कुंज" एक छोटा-सा आँगन है जहाँ मौलिक हिंदी कहानियाँ साँस लेती हैं।
+        हर कहानी यहाँ किसी अनुभव से जन्मी है — किसी शाम की चाय से, किसी बरसात की खिड़की से, या किसी अजनबी की चुप्पी से।
+        आशा है, आप यहाँ कुछ ऐसा पाएँगे जो आपको आपकी अपनी कहानी की याद दिला दे।
+      </p>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© २०२६ कथा कुंज · प्रेम से बनाया गया <span class="heart">❦</span></p>
+    </div>
+  </footer>
+
+  <!-- READER OVERLAY -->
+  <div class="reader-overlay" id="reader">
+    <div class="reader">
+      <button class="back" onclick="closeReader()">← वापस जाएँ</button>
+      <div class="story-meta" id="rMeta"></div>
+      <h1 id="rTitle"></h1>
+      <p class="subtitle" id="rSubtitle"></p>
+      <div class="ornament">❖</div>
+      <div class="content" id="rContent"></div>
+      <div class="ornament">॥ समाप्त ॥</div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- THEME ----------
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀ दिन' : '🌙 रात';
+    }
+
+    // ---------- STORIES ----------
+    const stories = [
+      {
+        cover: 'cover-1',
+        category: 'लघुकथा · रहस्य',
+        title: 'आखिरी चिट्ठी',
+        subtitle: 'पचास साल बाद लौटा एक पत्र',
+        excerpt: 'डाकिए के थैले में एक ऐसा लिफ़ाफ़ा था जिसका पता तो मौजूद था, पर जिसे वह लिखा गया था — वह पचास बरस पहले इस दुनिया से जा चुका था।',
+        content: `
+          <p>राम खिलावन डाकिया पैंतीस बरस से इस मोहल्ले में चिट्ठियाँ बाँट रहा था। उसे हर घर का दरवाज़ा याद था, हर कुत्ते का नाम, और हर बूढ़ी दादी की चाय का स्वाद। मगर उस मंगलवार की सुबह उसके हाथ में जो लिफ़ाफ़ा था, वह किसी और ही दुनिया से आया लग रहा था।</p>
+
+          <p>पीला पड़ चुका काग़ज़, किनारों पर धूल की परतें, और उस पर नीली स्याही से लिखा पता — "श्री मोहनलाल वर्मा, मकान नंबर ४२, चंदन गली, काशी।" मुहर पर तारीख़ थी — १२ अक्टूबर, १९७५।</p>
+
+          <p>राम खिलावन ठिठक गया। मोहनलाल वर्मा? यह नाम तो वह बचपन से सुनता आया था। अपने पिता के मुँह से, जो कहते थे — <em>"वह वर्मा जी, जो इकहत्तर की बाढ़ में बह गए थे।"</em></p>
+
+          <p>लिफ़ाफ़ा उसके हाथ में काँप रहा था। डाक की छाप बता रही थी कि चिट्ठी इसी शहर से, इसी साल चली है। पर किसने भेजी? और उस आदमी के लिए, जिसकी समाधि गंगा किनारे पचास बरस पुरानी हो चुकी है?</p>
+
+          <p>चंदन गली के मकान नंबर ४२ पर अब एक नया परिवार रहता था। पुराना पीपल का पेड़ अब भी खड़ा था, दरवाज़े के ठीक सामने। राम खिलावन ने घंटी बजाई। एक बूढ़ी औरत बाहर आईं — सफ़ेद साड़ी, पतली आवाज़।</p>
+
+          <p>"माँ जी, यह चिट्ठी यहाँ के पुराने मालिक के नाम की है। मोहनलाल वर्मा।"</p>
+
+          <p>बूढ़ी औरत की आँखें एक पल को ठहर गईं। फिर उन्होंने चिट्ठी ली, उलट-पुलट कर देखा, और धीरे से कहा — "मैं उनकी बहू हूँ, बेटा। पर तुम्हें यह किसने दी?"</p>
+
+          <p>"डाक से आई है, माँ जी। आज ही।"</p>
+
+          <p>बूढ़ी औरत ने लिफ़ाफ़ा खोला। भीतर एक ही पन्ना था, और उस पर चंद पंक्तियाँ —</p>
+
+          <p><em>"प्रिय मोहन,<br>तुम्हारे जाने के बाद भी, हर बरसात की पहली बूँद तुम्हारी याद दिलाती है। कल गंगा किनारे वही चाय वाला मिला था — उसने पूछा, 'वर्मा जी कहाँ हैं आजकल?' मैं कुछ न कह सकी।<br>अगर कहीं हो, तो इतना बता देना — क्या तुम्हें भी वह शाम याद है?<br>— तुम्हारी कमला"</em></p>
+
+          <p>बूढ़ी औरत की आँखें भर आईं। राम खिलावन ने कुछ नहीं पूछा। कभी-कभी डाकिए की सबसे बड़ी सेवा यही होती है — चुप रहना।</p>
+
+          <p>लौटते वक़्त उसने पीछे मुड़कर देखा। पीपल के पत्ते हिल रहे थे, जैसे कोई कान लगाकर जवाब सुन रहा हो। और हवा में एक हल्की, बहुत हल्की — पुरानी इत्र की ख़ुशबू तैर रही थी।</p>
+
+          <p>उस रात राम खिलावन ने अपनी पत्नी से कहा — "आज एक चिट्ठी बाँटी है। पता नहीं किसने लिखी, किसके लिए लिखी। पर शायद... वह सही पते पर पहुँच गई।"</p>
+        `
+      },
+      {
+        cover: 'cover-2',
+        category: 'उपन्यास अंश · अध्याय एक',
+        title: 'नदी के उस पार',
+        subtitle: 'दो गाँव, एक पुल, और वक़्त की धारा',
+        excerpt: 'गंगौली और बख़रिया — दो गाँव, जिनके बीच सिर्फ़ एक टूटा हुआ पुल था। पर उस पुल के नीचे बहती नदी जानती थी कि दूरी हमेशा पानी की नहीं होती।',
+        content: `
+          <p>मई की उस शाम हवा में आम के बौर की गंध थी। नदी अपनी पुरानी रवानी से बह रही थी, जैसे उसे अगले पचास साल की कोई जल्दी न हो। पुल के इस छोर पर गंगौली था — जिसमें चौदह घर, एक कुआँ, और एक पीपल था जिसे गाँव वाले "बुज़ुर्ग" कहते थे। उस छोर पर बख़रिया — जिसमें अठारह घर, दो कुएँ, और एक मंदिर था जिसकी घंटी की आवाज़ गंगौली तक पहुँचती थी।</p>
+
+          <p>दोनों गाँव कभी एक थे। फिर कोई झगड़ा हुआ — किसी कहते हैं ज़मीन का, कोई कहते हैं पानी का, और सबसे बूढ़ी दादी कहती थीं कि झगड़ा तो <em>इज़्ज़त</em> का था, जो इन दोनों से ज़्यादा पुरानी और ज़्यादा ज़िद्दी चीज़ है। बहरहाल, पचास बरस पहले पुल बनाने का ठेका लिया गया, और जब वह आधा बनकर तैयार हुआ, तभी न जाने कैसे — बीच का हिस्सा गिर गया।</p>
+
+          <p>ठेकेदार कभी लौटा नहीं। पुल भी कभी पूरा नहीं हुआ। दोनों तरफ़ के बच्चे बड़े हो गए, और बड़ों ने बच्चों को बताया कि "उस पार जाना मना है।"</p>
+
+          <p>मगर शिवनंदन को यह बात कभी जँची नहीं।</p>
+
+          <p>वह बारह साल का था जब पहली बार उसने अधूरे पुल के उस आख़िरी पत्थर पर बैठकर उस पार देखा था। उसे दिखा — एक लड़की, जो बख़रिया के घाट पर कपड़े धो रही थी। उसकी चोटी घुटनों तक आती थी, और जब वह हँसती थी, तो घंटी की आवाज़ जैसी लगती थी।</p>
+
+          <p>शिवनंदन ने उसे हाथ हिलाया। लड़की ने देखा, पर जवाब नहीं दिया। दूसरे दिन फिर वैसा ही। तीसरे दिन लड़की ने एक पत्थर उठाया, उस पर कुछ लिखा, और पानी में सरका दिया।</p>
+
+          <p>धारा उसे शिवनंदन के क़दमों तक ले आई। पत्थर पर अंगारे से लिखा था — "नाम?"</p>
+
+          <p>उसने कोयले के एक टुकड़े से जवाब लिखा — "शिवनंदन। तुम्हारा?"</p>
+
+          <p>अगले दिन पत्थर वापस आया — "रजनी।"</p>
+
+          <p>यही उनकी चिट्ठी-पत्री थी। नदी उनकी डाकिया। कभी वह पत्थरों पर कविता भेजती, कभी वह मिट्टी के टुकड़ों पर अपने सपने। सात साल तक वे एक-दूसरे से मिले नहीं, पर जाने थे। जानते थे कि रजनी को सावन पसंद है और शिवनंदन को ठंड की सुबह। जानते थे कि रजनी के पिता उसे पढ़ाना चाहते हैं, और शिवनंदन की माँ चाहती हैं कि वह शहर जाए।</p>
+
+          <p>जिस दिन रजनी का ब्याह तय हुआ, उसने आख़िरी पत्थर भेजा। उस पर सिर्फ़ तीन शब्द थे — <em>"मुझे ले चलो।"</em></p>
+
+          <p>शिवनंदन ने पत्थर पढ़ा। फिर पुल के अधूरे छोर पर जाकर खड़ा हो गया। उसके और उसके बीच बीस गज़ का टूटा हुआ हिस्सा था। नीचे नदी थी, जो पचास साल से बह रही थी, और पचास साल और बहेगी।</p>
+
+          <p>गाँव वाले कहते हैं कि उस रात कोई गंगौली से बख़रिया तैरकर गया था। सुबह पुल के नीचे पानी में एक कोयले से लिखा पत्थर मिला — "आज रात, तीसरे पहर, बरगद के नीचे।"</p>
+
+          <p>उसके बाद क्या हुआ, यह अगले अध्याय में।</p>
+
+          <p>पर इतना तय है — कुछ पुल पत्थर से नहीं बनते।</p>
+        `
+      },
+      {
+        cover: 'cover-3',
+        category: 'लघुकथा · बालकथा',
+        title: 'चाँद का टुकड़ा',
+        subtitle: 'एक छोटी-सी लड़की का सबसे बड़ा सपना',
+        excerpt: 'मुनिया को यक़ीन था कि चाँदनी को मर्तबान में बंद किया जा सकता है। उसकी दादी ने पहले हँसी, फिर मुस्कुराईं, और फिर... एक राज़ बताया।',
+        content: `
+          <p>मुनिया सात साल की थी और उसे तीन चीज़ों पर पक्का यक़ीन था — एक, कि आम का पेड़ रात में बातें करता है; दो, कि कुएँ में एक जादुई मेंढक रहता है जो कभी-कभी सिक्के भी देता है; और तीन, कि चाँदनी को मर्तबान में बंद किया जा सकता है।</p>
+
+          <p>तीसरी बात उसे सबसे ज़्यादा दिलचस्प लगती थी।</p>
+
+          <p>एक शाम उसने अपनी दादी से कहा — "दादी, मुझे एक ख़ाली मर्तबान दो।"</p>
+
+          <p>"क्यों, मुनिया?"</p>
+
+          <p>"मैं चाँद का टुकड़ा पकड़ूँगी।"</p>
+
+          <p>दादी हँस दीं। ज़ोर से नहीं — धीरे से, जैसे कोई बहुत पुरानी याद हँस रही हो। फिर उन्होंने रसोई से एक काँच का मर्तबान निकाला और मुनिया को थमा दिया।</p>
+
+          <p>उस रात पूनम थी। चाँद इतना बड़ा था कि लग रहा था अभी आँगन में उतर आएगा। मुनिया आँगन में बिछी खाट पर लेट गई, मर्तबान का ढक्कन खोला, और उसे आकाश की तरफ़ तान दिया।</p>
+
+          <p>"बस थोड़ा-सा," उसने चाँद से कहा, "पूरा नहीं लूँगी। तुम्हें भी तो चमकना है।"</p>
+
+          <p>कुछ देर वह यूँ ही रही। चाँदनी मर्तबान के भीतर गिर रही थी — पर मुनिया को लगा कि वह जमा नहीं हो रही। वह जल्दी से मर्तबान का ढक्कन बंद कर दे तो शायद — शायद थोड़ी रुक जाए।</p>
+
+          <p>उसने ढक्कन बंद कर दिया। फिर मर्तबान को आँखों के पास लाकर देखा।</p>
+
+          <p>भीतर सब काला था।</p>
+
+          <p>मुनिया की आँखें भर आईं। "दादी," वह रोआँसी होकर बोली, "चाँदनी भाग गई।"</p>
+
+          <p>दादी पास आईं। उन्होंने मुनिया को गोद में बिठाया और कहा — "बेटा, कुछ चीज़ें ऐसी होती हैं जो खुली हवा में ही सुन्दर रहती हैं। बंद करो तो अँधेरा हो जाती हैं।"</p>
+
+          <p>"तो फिर चाँदनी कैसे रखूँ?"</p>
+
+          <p>दादी मुस्कुराईं। उन्होंने मुनिया के दोनों हाथ उठाए, उन्हें कटोरी की तरह जोड़ा, और ऊपर की ओर कर दिया।</p>
+
+          <p>"इस तरह," उन्होंने कहा। "हाथ खुले रखो। चाँदनी आएगी, थोड़ी देर ठहरेगी, फिर चली जाएगी। पर जो ठहरी, वह तुम्हारी है।"</p>
+
+          <p>मुनिया ने अपने हाथ आकाश की तरफ़ खोल दिए। चाँद की रोशनी उसकी हथेलियों पर चाँदी की तरह चमकने लगी। उसने एक लम्बी साँस ली।</p>
+
+          <p>"दादी," उसने फुसफुसा कर कहा, "पकड़ ली।"</p>
+
+          <p>दादी ने कुछ न कहा। बस उसकी चोटी को हौले से सहलाती रहीं। आसमान में चाँद मुस्कुरा रहा था, जैसे उसे पता हो कि आज रात वह किसी छोटी-सी लड़की की हथेलियों में थोड़ी देर के लिए ठहरा है।</p>
+
+          <p>और शायद — शायद कुछ चीज़ें यूँ ही याद बन जाती हैं।</p>
+        `
+      },
+      {
+        cover: 'cover-4',
+        category: 'कहानी · समकालीन',
+        title: 'बनारस की गलियाँ',
+        subtitle: 'घर लौटने का अर्थ क्या है?',
+        excerpt: 'तन्वी बारह साल बाद बनारस लौटी थी। उसे लगा था शहर बदल गया होगा। उसे यह नहीं पता था कि बदलाव उसकी अपनी परछाईं में है।',
+        content: `
+          <p>हवाई अड्डे से निकलते ही जो पहली चीज़ तन्वी को मिली, वह थी बनारस की अजीब-सी गंध — अगरबत्ती, नदी की नमी, और उस मिट्टी की जो सिर्फ़ इसी शहर की है। उसने अपनी सूटकेस की पहिया खींची और टैक्सी में बैठ गई।</p>
+
+          <p>"कहाँ, मैडम?"</p>
+
+          <p>"सोनारपुरा। गली नंबर चार।"</p>
+
+          <p>ड्राइवर ने उसे आईने से देखा। "बहुत दिन बाद आईं?"</p>
+
+          <p>"बारह साल," उसने कहा, और खिड़की से बाहर देखने लगी।</p>
+
+          <p>शहर वही था — वही भीड़, वही गायें, वही रिक्शे जो कभी झगड़ते, कभी हँसते नज़र आते। पर शहर बदला भी था। चाय की दुकानों पर अब क्यू-आर कोड थे। गंगा आरती में विदेशी ज़्यादा थे। और सोनारपुरा में, जहाँ कभी उसके घर के बग़ल में एक पुराना छापाख़ाना था, अब एक कैफ़े था — "द पोएट्स कप।"</p>
+
+          <p>उसने पिता की चाबी से दरवाज़ा खोला। बारह साल पहले जब वह दिल्ली पढ़ने गई थी, पिता ने कहा था — "जब लौटोगी, यह घर वैसा ही मिलेगा।" वे सच कह गए थे। छह महीने पहले वे चले गए, पर घर — घर रुक गया था।</p>
+
+          <p>आँगन में वही तुलसी का पौधा, थोड़ा मुरझाया हुआ। बैठक में पिता की कुर्सी, उनकी आख़िरी किताब अब भी हत्थे पर रखी हुई। तन्वी ने किताब उठाई — निराला की कविताएँ। पन्ना मुड़ा हुआ था, जहाँ लिखा था — <em>"तोड़ती पत्थर, वह तोड़ती पत्थर।"</em></p>
+
+          <p>उसकी आँखें भर आईं, पर वह रोई नहीं। रोना उसने दिल्ली में बहुत साल पहले छोड़ दिया था।</p>
+
+          <p>शाम को वह घाट की तरफ़ निकल गई। उसे पता था कि कौन-सी गली से जाना है। हर मोड़ याद था — वह हलवाई जो बचपन में एक-एक रुपये की जलेबी देता था, वह पान की दुकान जहाँ उसके ताऊ बैठकर घंटों बहस करते थे।</p>
+
+          <p>और फिर, दशाश्वमेध के पास, उसे अम्मा दिखीं।</p>
+
+          <p>अम्मा — यानी उसकी बचपन की सहेली कामिनी की माँ। जो उनके घर की हर रसोई जानती थीं। जिन्होंने तन्वी को राखी बाँधना सिखाया था। जो अब बहुत बूढ़ी लग रही थीं, सीढ़ियों पर दीया जलाने बैठी हुईं।</p>
+
+          <p>"अम्मा।" तन्वी ने पुकारा।</p>
+
+          <p>बूढ़ी आँखें ऊपर उठीं। एक पल भ्रम, फिर पहचान, फिर एक ऐसी मुस्कान जो बनारस में ही मिलती है — जिसमें आशीर्वाद भी हो और उलाहना भी।</p>
+
+          <p>"तन्वी! हे भगवान, कब आई?"</p>
+
+          <p>"आज दोपहर।"</p>
+
+          <p>"और कामिनी से मिली?"</p>
+
+          <p>तन्वी ने धीरे से "ना" में सिर हिलाया। कामिनी — उसकी बचपन की सहेली, जिससे उसकी बारह साल पहले लड़ाई हुई थी, और जिससे उसने कभी माफ़ी नहीं माँगी।</p>
+
+          <p>"वह यहीं है, बेटा। उसी गली में। घर नंबर सात। जाओ, मिल लो।"</p>
+
+          <p>तन्वी ने सोचा, बहाना बनाएगी। कि वह थकी है। कि कल मिल लेगी। पर अम्मा की आँखें ऐसी थीं कि झूठ बोलना नामुमकिन लगा।</p>
+
+          <p>वह चली गई। घर नंबर सात। दरवाज़े पर एक तख़्ती थी — "कामिनी मिश्रा। भाषा शिक्षक।" उसने घंटी बजाई।</p>
+
+          <p>जो दरवाज़ा खुला, वह थोड़ी भारी थी, थोड़ी थकी हुई। बालों में सफ़ेदी की पहली लकीर। पर आँखें — आँखें वही थीं।</p>
+
+          <p>दोनों एक पल खड़ी रहीं। बारह साल एक पल में सिमट आए। फिर कामिनी ने — जो कभी तन्वी की सबसे बड़ी आलोचक थी — दरवाज़ा पूरा खोलकर कहा, "अंदर आ जा, पगली। चाय बन रही है।"</p>
+
+          <p>कोई माफ़ी नहीं माँगी गई। किसी ने नहीं पूछा कि "तुमने वह क्यों कहा था?" या "तुमने मेरी चिट्ठी का जवाब क्यों नहीं दिया?" कुछ बातें बनारस की गलियों की तरह होती हैं — वे सीधी नहीं जातीं। वे घूमकर, ठहरकर, खुद अपनी मंज़िल ढूँढती हैं।</p>
+
+          <p>उस रात लौटते वक़्त, तन्वी ने महसूस किया कि शहर सचमुच नहीं बदला था। बदली तो वह थी — और शायद यही घर लौटने का अर्थ है।</p>
+
+          <p>घर वह जगह नहीं जहाँ आप थे। घर वह है जो आपको वापस लेने को तैयार है।</p>
+        `
+      },
+      {
+        cover: 'cover-5',
+        category: 'लघुकथा · प्रेम',
+        title: 'चाय की आख़िरी घूँट',
+        subtitle: 'कुछ रिश्ते शब्दों के मोहताज नहीं होते',
+        excerpt: 'चालीस बरस की शादी में उन्होंने शायद ही कभी "प्यार" शब्द कहा हो। पर हर सुबह की चाय में कुछ था, जो शब्दों से बड़ा था।',
+        content: `
+          <p>हर सुबह पाँच बजकर चालीस मिनट पर उठती थीं सुशीला जी। यह समय घड़ी से नहीं, आदत से तय था। रसोई का चूल्हा जलता, अदरक कूटी जाती, और सिकुड़ी हुई चाय की पत्तियाँ उबलते पानी में डाली जातीं। बगल के कमरे में, विश्वनाथ जी अब भी सोते हुए होते।</p>
+
+          <p>चालीस बरस से यही क्रम था।</p>
+
+          <p>छह बजकर दस मिनट पर वह दो कप लेकर बैठक में आतीं। एक अपना — हल्की मीठी, एक उनका — बिना चीनी। विश्वनाथ जी तब तक उठ चुके होते, अख़बार खोलकर बैठे होते, चश्मा नाक की नोक पर।</p>
+
+          <p>वे चाय का प्याला लेते। एक घूँट भरते। और कहते — "थोड़ी और कड़क।"</p>
+
+          <p>सुशीला जी कभी कुछ न कहतीं। बस मुस्कुरातीं। अगले दिन चाय ज़रा-सी और कड़क बनातीं। फिर वे कहते — "आज ठीक है।" फिर दस दिन बाद वह फिर कहते — "थोड़ी और कड़क।"</p>
+
+          <p>यह खेल चालीस साल चला।</p>
+
+          <p>एक अप्रैल की सुबह — जब आम के बौर खिले थे और कोयल कहीं दूर बोल रही थी — सुशीला जी ने जब चाय रखी, तो विश्वनाथ जी ने कप को छुआ नहीं।</p>
+
+          <p>वे कुर्सी पर यूँ ही बैठे थे। अख़बार खुला हुआ था। चश्मा नाक की नोक पर। सब कुछ वैसा ही था।</p>
+
+          <p>बस साँस नहीं थी।</p>
+
+          <p>सुशीला जी बहुत देर तक खड़ी रहीं। फिर धीरे से बैठ गईं उनके सामने वाली कुर्सी पर, जहाँ वह चालीस साल से बैठती आई थीं।</p>
+
+          <p>उन्होंने अपना कप उठाया। एक घूँट पी। फिर — पहली बार — उन्होंने उनका कप उठाया। उसे अपने होंठों से लगाया।</p>
+
+          <p>चाय कड़क थी। एकदम सही।</p>
+
+          <p>उनकी आँख से एक आँसू गिरा, सीधा कप में। वे मुस्कुराईं।</p>
+
+          <p>"आज ठीक बनी थी।"</p>
+
+          <p>बाहर कोयल फिर बोली। भीतर एक कप ख़ाली हुआ, और एक भरा रह गया।</p>
+
+          <p>कभी-कभी प्यार का इज़हार चालीस बरस की आख़िरी घूँट में होता है।</p>
+        `
+      }
+    ];
+
+    // Render cards
+    const grid = document.getElementById('storyGrid');
+    stories.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.onclick = () => openReader(i);
+      card.innerHTML = `
+        <div class="cover ${s.cover}">
+          <h3>${s.title}</h3>
+        </div>
+        <div class="body">
+          <div class="meta">${s.category}</div>
+          <h4>${s.subtitle}</h4>
+          <p>${s.excerpt}</p>
+          <div class="read-more">पूरी कहानी पढ़ें →</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Reader
+    function openReader(i) {
+      const s = stories[i];
+      document.getElementById('rMeta').textContent = s.category;
+      document.getElementById('rTitle').textContent = s.title;
+      document.getElementById('rSubtitle').textContent = s.subtitle;
+      document.getElementById('rContent').innerHTML = s.content;
+      document.getElementById('reader').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
+      document.getElementById('reader').scrollTop = 0;
+    }
+
+    function closeReader() {
+      document.getElementById('reader').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ESC closes reader
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeReader();
+    });
+  </script>
+</body>
+</html>
